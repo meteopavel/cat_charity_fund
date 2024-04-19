@@ -13,4 +13,5 @@ class CharityProject(Investment):
 
     def __repr__(self):
         return (f'{super().__repr__()},'
-                f' Имя: {self.name}, Описание: {self.description}')
+                f'Имя благотворительного проекта: {self.name}, '
+                f'Описание: {self.description}')

@@ -8,7 +8,7 @@ def process_investments(
     source_investments: list[Investment],
 ) -> list[Investment]:
     """
-    Распределить имеющиеся средства на инвестиции.
+    Распределить имеющиеся средства фонда на инвестиции.
     """
     updated_investments = []
     for source_investment in source_investments:

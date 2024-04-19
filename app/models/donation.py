@@ -9,5 +9,5 @@ class Donation(Investment):
 
     def __repr__(self):
         return (f'{super().__repr__()},'
-                f' Пользовательский id: {self.user_id}, '
+                f' Id Пользователя: {self.user_id}, '
                 f' Комментарий: {self.comment}')

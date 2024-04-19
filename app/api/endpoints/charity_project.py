@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.validators import (
-    check_project_has_investment, check_name_is_busy,
+    check_project_name_is_busy, check_project_has_investment,
     check_possibility_for_patching
 )
 from app.core.db import get_async_session
@@ -41,7 +41,7 @@ async def create_project(
     """
     Создать благотворительный проект. Только для суперпользователей.
     """
-    await check_name_is_busy(project.name, session)
+    await check_project_name_is_busy(project.name, session)
     new_project = await charity_crud.create(project, session, skip_commit=True)
     unclosed = await donation_crud.get_unclosed_projects(session)
     if unclosed:
@@ -49,21 +49,6 @@ async def create_project(
         session.add_all(invested)
     await charity_crud.add_to_database(new_project, session)
     return new_project
-
-
-@router.delete(
-    '/{project_id}',
-    response_model=CharityProjectDB,
-    dependencies=[Depends(current_superuser)],
-)
-async def delete_project(
-    project_id: int, session: AsyncSession = Depends(get_async_session)
-) -> CharityProject:
-    """
-    Удалить благотворительный проект по его id. Только для суперпользователей.
-    """
-    project = await check_project_has_investment(project_id, session)
-    return await charity_crud.delete(project, session)
 
 
 @router.patch(
@@ -92,3 +77,18 @@ async def update_project(
         session.add_all(invested)
     await charity_crud.add_to_database(project, session)
     return project
+
+
+@router.delete(
+    '/{project_id}',
+    response_model=CharityProjectDB,
+    dependencies=[Depends(current_superuser)],
+)
+async def delete_project(
+    project_id: int, session: AsyncSession = Depends(get_async_session)
+) -> CharityProject:
+    """
+    Удалить благотворительный проект по его id. Только для суперпользователей.
+    """
+    project = await check_project_has_investment(project_id, session)
+    return await charity_crud.delete(project, session)

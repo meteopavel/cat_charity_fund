@@ -8,7 +8,9 @@ from app.models import CharityProject
 from app.schemas.charity_project import CharityProjectUpdate
 
 
-async def check_name_is_busy(name: str, session: AsyncSession) -> None:
+async def check_project_name_is_busy(
+    name: str, session: AsyncSession
+) -> None:
     """
     Проверить, не занято ли имя благотворительного проекта.
     """
@@ -58,5 +60,5 @@ async def check_possibility_for_patching(
             'Нелья установить значение full_amount меньше уже вложенной суммы.'
         )
     if data_in.name != project.name:
-        await check_name_is_busy(data_in.name, session)
+        await check_project_name_is_busy(data_in.name, session)
     return project

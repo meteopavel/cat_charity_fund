@@ -1,11 +1,11 @@
 from fastapi_users import schemas
 
 
-class UserRead(schemas.BaseUser[int]):
+class UserCreate(schemas.BaseUserCreate):
     pass
 
 
-class UserCreate(schemas.BaseUserCreate):
+class UserRead(schemas.BaseUser[int]):
     pass
 
 

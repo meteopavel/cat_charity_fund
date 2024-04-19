@@ -34,4 +34,4 @@ class Investment(Base):
         return (f'{type(self).name} #{self.id}: '
                 f'Текущая сумма инвестиции: {self.invested_amount}'
                 f'/{self.full_amount}. Создано: {self.create_date}, '
-                f'закрыто: {self.close_date}')
+                f'Закрыто: {self.close_date}')
