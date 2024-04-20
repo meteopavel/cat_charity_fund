@@ -8,13 +8,13 @@
 Для управления пользователями используется библиотека FastAPI Users. Транспорт Bearer и стратегия JWT.
 
 ## Основные используемые инструменты
-* python        3.9.10
-* fastapi       0.78.0
-* fastapi-users 10.0.4
-* alembic       1.7.7
-* uvicorn       0.17.6
-* sqlalchemy    1.4.36
-* python-dotenv 0.20.0
+* python 3.9
+* fastapi
+* fastapi-users
+* alembic
+* uvicorn
+* sqlalchemy
+* python-dotenv
 
 ## Развёртывание проекта на локальном компьютере
 1. Клонировать репозиторий и перейти в него в командной строке:

@@ -49,8 +49,8 @@ class CRUDBase(Generic[CreateSchemaType, ModelType, UpdateSchemaType]):
             return await self.add_to_database(db_obj, session)
         return db_obj
 
-    @staticmethod
     async def patch(
+        self,
         db_obj: ModelType,
         input_data_obj: UpdateSchemaType,
         session: AsyncSession,
@@ -63,7 +63,7 @@ class CRUDBase(Generic[CreateSchemaType, ModelType, UpdateSchemaType]):
                 setattr(db_obj, field, update_data[field])
         session.add(db_obj)
         if not skip_commit:
-            return await CRUDBase.add_to_database(db_obj, session)
+            return await self.add_to_database(db_obj, session)
         return db_obj
 
     @staticmethod

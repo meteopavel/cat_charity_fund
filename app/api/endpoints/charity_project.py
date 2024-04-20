@@ -42,7 +42,9 @@ async def create_project(
     Создать благотворительный проект. Только для суперпользователей.
     """
     await check_project_name_is_busy(project.name, session)
-    new_project = await charity_crud.create(project, session, skip_commit=True)
+    new_project = await charity_crud.create(
+        project, session, skip_commit=True
+    )
     unclosed = await donation_crud.get_unclosed_projects(session)
     if unclosed:
         invested = process_investments(new_project, unclosed)

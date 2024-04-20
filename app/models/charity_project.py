@@ -2,10 +2,12 @@ from sqlalchemy import Column, String, Text
 
 from app.models.base import Investment
 
+from app.core.constants import MAX_ANYSTR_LENGTH
+
 
 class CharityProject(Investment):
     name = Column(
-        String(100),
+        String(MAX_ANYSTR_LENGTH),
         unique=True,
         nullable=False,
     )

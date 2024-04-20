@@ -3,30 +3,34 @@ from typing import Optional
 
 from pydantic import BaseModel, Extra, Field, StrictInt, PositiveInt
 
+from app.core.constants import MAX_ANYSTR_LENGTH
+
 
 class CharityProjectBase(BaseModel):
     name: Optional[str] = Field(
         None,
-        min_length=1,
-        max_length=100,
+        max_length=MAX_ANYSTR_LENGTH,
     )
     description: Optional[str] = Field(
-        None, min_length=1
+        None,
     )
     full_amount: Optional[PositiveInt]
 
     class Config:
         extra = Extra.forbid
+        min_anystr_length = 1
 
 
 class CharityProjectCreate(CharityProjectBase):
     name: str = Field(
         ...,
-        min_length=1,
-        max_length=100,
+        max_length=MAX_ANYSTR_LENGTH,
     )
-    description: str = Field(..., min_length=1)
+    description: str = Field(...,)
     full_amount: PositiveInt
+
+    class Config:
+        min_anystr_length = 1
 
 
 class CharityProjectUpdate(CharityProjectBase):
