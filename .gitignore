@@ -2,7 +2,6 @@
 __pycache__/
 *.py[cod]
 *$py.class
-.vscode
 
 # C extensions
 *.so
@@ -131,3 +130,9 @@ dmypy.json
 
 # .idea
 .idea
+
+# vscode
+.vscode
+
+# db
+*.db
