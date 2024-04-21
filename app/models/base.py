@@ -30,7 +30,7 @@ class Investment(Base):
         )
     )
 
-    def repr(self):
+    def __repr__(self):
         return (f'{type(self).name} #{self.id}: '
                 f'Текущая сумма инвестиции: {self.invested_amount}'
                 f'/{self.full_amount}. Создано: {self.create_date}, '
